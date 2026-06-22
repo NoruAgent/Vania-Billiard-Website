@@ -13,7 +13,16 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 24);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -26,10 +35,10 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           scrolled
-            ? "bg-bg/95 backdrop-blur-md border-b border-border-subtle"
-            : "bg-bg/40 backdrop-blur-sm"
+            ? "bg-[#080808]/90 backdrop-blur-xl border-b border-border-subtle shadow-[0_8px_32px_-16px_rgba(0,0,0,0.6)]"
+            : "bg-transparent backdrop-blur-0"
         }`}
       >
         <nav className="mx-auto max-w-7xl px-5 lg:px-8 h-16 lg:h-20 flex items-center justify-between gap-8">

@@ -14,7 +14,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
 
   return (
     <article
-      className={`group relative flex flex-col bg-surface border border-border-subtle hover:border-copper-dim transition-all duration-300 ${
+      className={`group relative flex flex-col bg-surface border border-border-subtle hover:border-copper-dim hover-lift overflow-hidden ${
         isFeatured ? "lg:flex-row lg:items-stretch" : ""
       }`}
     >
@@ -27,7 +27,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
         <img
           src={`/images/products/${product.slug}.jpg`}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] img-reveal"
           loading="lazy"
         />
         {/* Badges */}

@@ -32,15 +32,15 @@ type ButtonProps = LinkButtonProps | PlainButtonProps;
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-copper text-bg hover:bg-[#a3592a] focus-visible:ring-copper",
+    "bg-copper text-bg hover:bg-[#a3592a] focus-visible:ring-copper btn-shine hover:-translate-y-0.5",
   secondary:
-    "bg-surface-elevated text-text hover:bg-border focus-visible:ring-text border border-border",
+    "bg-surface-elevated text-text hover:bg-border focus-visible:ring-text border border-border btn-shine hover:-translate-y-0.5",
   outline:
-    "bg-transparent text-text border border-text hover:bg-text hover:text-bg focus-visible:ring-text",
+    "bg-transparent text-text border border-text hover:bg-text hover:text-bg focus-visible:ring-text btn-shine hover:-translate-y-0.5",
   ghost:
-    "bg-transparent text-text hover:bg-surface focus-visible:ring-text",
+    "bg-transparent text-text hover:bg-surface focus-visible:ring-text hover:-translate-y-0.5",
   whatsapp:
-    "bg-wa text-white hover:bg-[#1ebe5d] focus-visible:ring-wa",
+    "bg-wa text-white hover:bg-[#1ebe5d] focus-visible:ring-wa btn-shine hover:-translate-y-0.5",
 };
 
 const sizeClasses: Record<Size, string> = {

@@ -1,7 +1,6 @@
-import { SectionHeading } from "../ui/SectionHeading";
+import { Reveal } from "../ui/Reveal";
 
-// Billiard pattern says trust pillars = 3-4 columns, no icons.
-// We use 4 + a left pull quote for editorial rhythm.
+// Billiard pattern: 3-4 trust pillars, no icons. We use 4 + left pull quote.
 
 const reasons = [
   {
@@ -31,7 +30,7 @@ export function WhyChooseVania() {
     <section className="py-20 lg:py-32 bg-surface border-y border-border-subtle">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-14 lg:mb-20">
-          <div className="lg:col-span-5">
+          <Reveal className="lg:col-span-5">
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-copper mb-5">
               Kenapa Vania
             </p>
@@ -42,27 +41,29 @@ export function WhyChooseVania() {
               <br />
               pengalaman.
             </h2>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7 flex items-end">
+          </Reveal>
+          <Reveal className="lg:col-span-6 lg:col-start-7 flex items-end" delay={150}>
             <p className="text-text-secondary leading-relaxed text-base lg:text-lg max-w-xl">
               Empat hal yang membedakan Vania Billiard dari ratusan workshop
               lain di Indonesia. Bukan slogan, ini janji operasional yang bisa
               Anda verifikasi sendiri.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border-subtle">
-          {reasons.map((r) => (
-            <div key={r.title} className="bg-surface p-8 lg:p-10">
-              <div className="w-8 h-px bg-copper mb-5" />
-              <h3 className="font-serif text-lg lg:text-xl font-medium mb-3 leading-tight text-white">
-                {r.title}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {r.description}
-              </p>
-            </div>
+          {reasons.map((r, i) => (
+            <Reveal key={r.title} delay={i * 100} y={20}>
+              <div className="bg-surface p-8 lg:p-10 h-full hover:bg-surface-elevated transition-colors duration-500">
+                <div className="w-8 h-px bg-copper mb-5" />
+                <h3 className="font-serif text-lg lg:text-xl font-medium mb-3 leading-tight text-white">
+                  {r.title}
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {r.description}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
