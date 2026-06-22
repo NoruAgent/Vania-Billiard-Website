@@ -1,98 +1,137 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { waTableLink } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/Button";
+import { QuizModal } from "@/components/ui/QuizModal";
+
+const TYPEWRITER_WORDS = ["Setiap Sudut", "Akurasi Turnamen", "Ruang Personal"];
 
 export function Hero() {
+  const [wordIdx, setWordIdx] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [phase, setPhase] = useState<"typing" | "holding" | "deleting">("typing");
+  const [quizOpen, setQuizOpen] = useState(false);
+
+  useEffect(() => {
+    const word = TYPEWRITER_WORDS[wordIdx];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (phase === "typing") {
+      if (displayed.length < word.length) {
+        timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), 80);
+      } else {
+        timeout = setTimeout(() => setPhase("holding"), 1800);
+      }
+    } else if (phase === "holding") {
+      timeout = setTimeout(() => setPhase("deleting"), 1500);
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length - 1)), 40);
+      } else {
+        setWordIdx((wordIdx + 1) % TYPEWRITER_WORDS.length);
+        setPhase("typing");
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, phase, wordIdx]);
+
   return (
-    <section className="relative min-h-[100svh] lg:min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero/hero-main.jpg"
-          alt=""
-          className="w-full h-full object-cover opacity-60 scale-105"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/80 to-bg/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" />
-        <div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at right, transparent 30%, var(--bg) 75%)" }}
-        />
-      </div>
+    <>
+      <section className="relative min-h-[100svh] flex flex-col md:flex-row pt-24 lg:pt-0">
+        {/* Left: text */}
+        <div className="w-full md:w-1/2 h-full min-h-[60vh] md:min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 pb-16 md:pb-0 relative z-10">
+          <div className="w-12 h-px bg-copper mb-6 md:mb-8 mt-8 md:mt-0" />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8 pt-32 pb-32 lg:pt-24 lg:pb-24 w-full">
-        <div className="max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-copper mb-6 lg:mb-8">
-            Vania Billiard · Workshop Ambarawa
-          </p>
-
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium leading-[1.02] tracking-[-0.02em] text-balance mb-6 lg:mb-8">
-            Meja Billiard{" "}
-            <span className="italic text-copper">Premium</span> untuk Rumah, Usaha, dan Ruang Bermain yang Lebih Berkelas.
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] mb-6 text-white">
+            <span className="block">Seni Presisi</span>
+            <span className="italic font-light text-gray-500 block mt-1 md:mt-2">Dalam</span>
+            <span className="block h-[1.2em] mt-1 md:mt-2">
+              <span className="text-copper">{displayed}</span>
+              <span className="inline-block w-[2px] h-[0.9em] bg-copper ml-1 align-middle animate-pulse" />
+            </span>
           </h1>
 
-          <p className="text-text-muted text-lg lg:text-xl leading-relaxed max-w-2xl mb-10 lg:mb-12 text-balance">
-            Vania Billiard menyediakan meja billiard pilihan, custom request, pengiriman nasional, dan aksesoris lengkap — dengan konsultasi ukuran ruangan sebelum kamu membeli.
+          <p className="font-light text-gray-400 text-sm md:text-base leading-relaxed max-w-md mb-8 md:mb-10">
+            Menghadirkan furnitur hiburan bertaraf turnamen. Kami mengkurasi, mengirim, dan merakit presisi absolut untuk ruang eksklusif Anda.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-12 lg:mb-16">
-            <a
-              href={waTableLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-copper text-bg font-medium uppercase tracking-wide hover:bg-copper-bright transition-colors text-base w-full sm:w-auto"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.96 7.96 0 01-4.11-1.13l-.29-.174-2.87.85.85-2.87-.174-.29A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z" />
-              </svg>
-              Konsultasi Meja via WhatsApp
-            </a>
-            <Link
-              href="/simulator"
-              className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-transparent text-text border-2 border-text hover:bg-text hover:text-bg transition-colors font-medium uppercase tracking-wide text-base w-full sm:w-auto"
-            >
-              Cek Ukuran Ruangan
-            </Link>
+          <div className="flex flex-col gap-6">
             <Link
               href="/meja-billiard"
-              className="inline-flex items-center justify-center gap-2 h-14 px-8 bg-transparent text-text hover:bg-surface transition-colors font-medium uppercase tracking-wide text-base w-full sm:w-auto"
+              className="text-xs uppercase tracking-[0.2em] font-semibold flex items-center group w-max text-white"
             >
-              Lihat Katalog →
+              Eksplorasi Kurasi
+              <span className="ml-4 w-8 h-px bg-white group-hover:w-16 group-hover:bg-copper transition-all duration-300" />
             </Link>
-          </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 lg:gap-8 pt-8 border-t border-border-subtle max-w-xl">
-            <div>
-              <p className="font-serif text-2xl lg:text-3xl text-copper font-semibold">
-                11
-              </p>
-              <p className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-                Seri Meja
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-2xl lg:text-3xl text-copper font-semibold">
-                5 Thn
-              </p>
-              <p className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-                Garansi
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-2xl lg:text-3xl text-copper font-semibold">
-                Nasional
-              </p>
-              <p className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-                Pengiriman
-              </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+              <button
+                type="button"
+                onClick={() => setQuizOpen(true)}
+                className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold text-copper border border-copper px-6 py-3 hover:bg-copper hover:text-white transition-all duration-300"
+              >
+                Temukan Meja Ideal 🎯
+              </button>
+              <a
+                href={waTableLink("Halo Vania Billiard, saya ingin konsultasi meja billiard premium.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-xs uppercase tracking-widest font-bold text-white hover:text-copper transition-colors group"
+              >
+                <span className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center mr-3 group-hover:border-copper transition-all">
+                  <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+                Konsultasi VIP
+              </a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Right: hero image with hotspots */}
+        <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative bg-[#111] overflow-hidden group">
+          <div className="absolute inset-0 bg-[url('/images/hero/hero-main.jpg')] bg-cover bg-center opacity-70 group-hover:opacity-90 transition-opacity duration-700 scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-bg/60 via-transparent to-transparent md:from-bg/40" />
+
+          {/* Hotspot 1: Worsted Cloth */}
+          <div className="absolute top-[60%] left-[40%] group/hs z-20 hidden md:block">
+            <div className="w-4 h-4 bg-copper rounded-full animate-ping absolute opacity-75" />
+            <div className="w-4 h-4 bg-copper border-2 border-white rounded-full relative cursor-pointer shadow-[0_0_10px_#C86A36]" />
+            <div className="absolute hidden group-hover/hs:block bottom-8 -left-16 w-56 bg-surface p-4 border border-copper/30 shadow-2xl pointer-events-none">
+              <p className="text-[10px] uppercase tracking-widest text-copper font-bold mb-1">Worsted Cloth</p>
+              <p className="text-[10px] text-gray-400 leading-relaxed">
+                Laken anyaman tanpa bulu, laju bola lebih cepat dan minim friksi.
+              </p>
+            </div>
+          </div>
+
+          {/* Hotspot 2: Leather Pocket */}
+          <div className="absolute top-[25%] right-[20%] group/hs z-20 hidden md:block">
+            <div className="w-4 h-4 bg-copper rounded-full animate-ping absolute opacity-75" />
+            <div className="w-4 h-4 bg-copper border-2 border-white rounded-full relative cursor-pointer shadow-[0_0_10px_#C86A36]" />
+            <div className="absolute hidden group-hover/hs:block bottom-8 -right-10 w-56 bg-surface p-4 border border-copper/30 shadow-2xl pointer-events-none">
+              <p className="text-[10px] uppercase tracking-widest text-copper font-bold mb-1">Leather Pocket</p>
+              <p className="text-[10px] text-gray-400 leading-relaxed">
+                Jahitan kulit asli dengan redaman suara untuk kenyamanan bermain.
+              </p>
+            </div>
+          </div>
+
+          {/* Floating credit */}
+          <div className="absolute bottom-6 right-6 z-20 hidden lg:block">
+            <p className="text-[9px] uppercase tracking-[0.3em] text-copper font-mono">
+              Workshoot Ambarawa · Est. 2018
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <QuizModal open={quizOpen} onClose={() => setQuizOpen(false)} />
+    </>
   );
 }
