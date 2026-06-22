@@ -14,7 +14,7 @@ export function FeaturedTables() {
           <SectionHeading
             eyebrow="Koleksi Unggulan"
             title="Meja Billiard Pilihan untuk Setiap Kebutuhan"
-            subtitle="Dari entry-friendly sampai signature premium — pilih seri yang paling sesuai dengan ruangan, budget, dan gaya bermain Anda."
+            subtitle="Dari entry-friendly sampai signature premium, pilih seri yang paling sesuai dengan ruangan, budget, dan gaya bermain Anda."
           />
           <Button href="/meja-billiard" variant="ghost" size="md" className="lg:mb-14">
             Lihat Semua Seri →

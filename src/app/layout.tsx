@@ -26,7 +26,7 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vania Billiard — Meja Billiard Premium & Custom | Workshop Ambarawa",
+    default: "Vania Billiard · Meja Billiard Premium & Custom | Workshop Ambarawa",
     template: "%s | Vania Billiard",
   },
   description:
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     locale: "id_ID",
     url: "https://vaniabilliard.com",
     siteName: "Vania Billiard",
-    title: "Vania Billiard — Meja Billiard Premium & Custom",
+    title: "Vania Billiard · Meja Billiard Premium & Custom",
     description:
       "Spesialis meja billiard lokal, custom request, pengiriman nasional, dan aksesoris billiard lengkap.",
     images: [
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Vania Billiard — Workshop Meja Billiard Premium",
+        alt: "Vania Billiard · Workshop Meja Billiard Premium",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vania Billiard — Meja Billiard Premium & Custom",
+    title: "Vania Billiard · Meja Billiard Premium & Custom",
     description: "Spesialis meja billiard lokal, custom request, pengiriman nasional.",
     images: ["/og-image.jpg"],
   },

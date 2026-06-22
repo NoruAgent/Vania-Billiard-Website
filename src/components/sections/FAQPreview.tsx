@@ -17,7 +17,7 @@ export function FAQPreview() {
             <SectionHeading
               eyebrow="Pertanyaan Umum"
               title="Hal yang Sering Ditanyakan Pembeli"
-              subtitle="Kalau pertanyaan lo gak ada di sini, langsung tanya via WhatsApp — fast response."
+              subtitle="Kalau pertanyaan lo gak ada di sini, langsung tanya via WhatsApp untuk fast response."
             />
             <div className="lg:mt-8">
               <Button

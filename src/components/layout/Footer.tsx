@@ -41,7 +41,7 @@ export function Footer() {
                   <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
                 </svg>
                 <span className="font-mono text-xs">
-                  Meja — {WA.displayMeja}
+                  Meja · {WA.displayMeja}
                 </span>
               </a>
               <a
@@ -54,7 +54,7 @@ export function Footer() {
                   <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" />
                 </svg>
                 <span className="font-mono text-xs">
-                  Aksesoris — {WA.displayAksesoris}
+                  Aksesoris · {WA.displayAksesoris}
                 </span>
               </a>
             </div>

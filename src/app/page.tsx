@@ -1,11 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWA } from "@/components/layout/FloatingWA";
-import { GeolocationBanner } from "@/components/ui/GeolocationBanner";
 import { Hero } from "@/components/sections/Hero";
-import { TrustMarquee } from "@/components/sections/TrustMarquee";
-import { StatsCounter } from "@/components/sections/StatsCounter";
-import { AnatomiPresisi } from "@/components/sections/AnatomiPresisi";
+import { TrustBadges } from "@/components/sections/TrustBadges";
 import { BigQuote } from "@/components/sections/BigQuote";
 import { FeaturedTables } from "@/components/sections/FeaturedTables";
 import { TableSelectionGuide } from "@/components/sections/TableSelectionGuide";
@@ -21,13 +18,10 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 export default function Home() {
   return (
     <>
-      <GeolocationBanner />
       <Navbar />
       <main>
         <Hero />
-        <TrustMarquee />
-        <StatsCounter />
-        <AnatomiPresisi />
+        <TrustBadges />
         <BigQuote />
         <FeaturedTables />
         <TableSelectionGuide />

@@ -57,7 +57,7 @@ export function SimulatorTeaser() {
             <ul className="space-y-3 mb-8">
               {[
                 "Visualisasi 2D ruangan dengan margin cue stroke",
-                "Pilih 7ft, 8ft, atau 9ft — lihat langsung apakah muat",
+                "Pilih 7ft, 8ft, atau 9ft. Lihat langsung apakah muat di ruangan Anda.",
                 "Peringatan otomatis kalau ruangan terlalu kecil",
                 "Hasil simulasi bisa langsung dikirim ke WhatsApp",
                 "Bisa dipakai berkali-kali, tanpa login",

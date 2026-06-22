@@ -12,7 +12,7 @@ export const faqs: FAQ[] = [
     id: "faq-1",
     question: "Berapa ukuran ruangan minimal untuk meja billiard?",
     answer:
-      "Ukuran ruangan minimum tergantung ukuran meja:\n\n• Meja 7ft — ruangan minimal 4 × 5 meter\n• Meja 8ft — ruangan minimal 5 × 6 meter\n• Meja 9ft — ruangan minimal 5.5 × 7 meter\n\nMargin cue stroke minimum 1.5m di setiap sisi meja. Coba Simulator Ruangan Vania Billiard untuk visualisasi layout ruangan Anda sebelum membeli.",
+      "Ukuran ruangan minimum tergantung ukuran meja:\n\n• Meja 7ft: ruangan minimal 4 × 5 meter\n• Meja 8ft: ruangan minimal 5 × 6 meter\n• Meja 9ft: ruangan minimal 5.5 × 7 meter\n\nMargin cue stroke minimum 1.5m di setiap sisi meja. Coba Simulator Ruangan Vania Billiard untuk visualisasi layout ruangan Anda sebelum membeli.",
     category: "Ukuran",
   },
   {
